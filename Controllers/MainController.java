@@ -1,5 +1,6 @@
 package Controllers;
 import java.util.Collections;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -44,12 +45,16 @@ public class MainController {
                 addService();
                 break;
             case 3: 
+                //task 5
                 break; 
             case 4:
+                //task 5
                 break;   
             case 5:
+                //task 7
                 break;  
             case 6:
+                //task 9
                 break;
             case 7:
                 Exit();
@@ -79,8 +84,10 @@ public class MainController {
                 showAllVilla();
                 break;
             case 2:
+                showAllHouse();
                 break;
             case 3:
+                showAllRoom();
                 break;
             case 4: 
                 break;
@@ -91,21 +98,49 @@ public class MainController {
             case 7:
                 break;
             case 8:
-                exit();
+                Exit();
                 break;        
             default:
+                System.out.println("Ban nhap sai roi! Vui long nhap lai...");
                 break;
         }
 
     }
-    private static void showAllVilla(){
+    private static void showAllRoom() {
+        for(Room room: roomList){
+            room.showInfor();
+        }
+        displayMainMenu();
+    }
+
+    private static void showAllHouse() {
+        for(House house: houseList){
+            house.showInfor();
+        }
+        displayMainMenu();
+    }
+
+    private static void showAllVilla() {
+        for(Villa villa: villaList) {
+            villa.showInfor();
+        }
+        displayMainMenu();
+    }
+    
+    private static void showNewMenuService(){
+        System.out.println("1.Add New Villa");
+        System.out.println("2.Add New House");
+        System.out.println("3.Add New Room");
+        System.out.println("4.Back to menu");
+        System.out.println("5.Exit");
 
     }
 
     private static void addNewService() {//mục 2 task 2
+        showNewMenuService();
         Scanner sc = new Scanner(System.in);
         int soLuong = sc.nextInt();
-
+        
         switch (soLuong) {
             case 1:
                 addNewVilla();
@@ -126,51 +161,54 @@ public class MainController {
                 System.out.println("Ban nhap sai roi! nhap lại đi!!");
                 break;
         }
+        showNewMenuService();
     }
 
     //case1: 
     private static void addNewVilla() {
         Scanner sc = new Scanner(System.in);
         int soLuong = sc.nextInt();
-
-        int dem =0;
+    
+        int dem = 0;
         while(dem < soLuong) {
             Villa myVilla = new Villa();
-
-            System.out.println("Nhap tieu chuan phong: ");
+    
+            System.out.print("Nhap tieu chuan phong: ");
             sc.nextLine();
             myVilla.setRoomStandard(sc.nextInt());
-
-            System.out.println("Nhap mo ta tien nghi khac");
+    
+            System.out.print("Nhap mo ta tien nghi khac: ");
             myVilla.setDescriptionOfOther(sc.nextInt());
-
-            System.out.println("Nhap dien tich ho boi");
+    
+            System.out.print("Nhap dien tich ho boi: ");
             myVilla.setDescriptionOfOther(sc.nextInt());
-
-            System.out.println("Nhap so tang");
+    
+            System.out.print("Nhap so tang: ");
             myVilla.setFloor(sc.nextInt());
-
-            System.out.println("Nhap ten dich vu: ");
+    
+            System.out.print("Nhap ten dich vu: ");
             myVilla.setServiceName(sc.nextLine());
-
-            System.out.println("Nhap dien tich su dung");
+            sc.nextLine();
+    
+            System.out.print("Nhap dien tich su dung: ");
             myVilla.setUsableArea(sc.nextInt());
-
-            System.out.println("Nhap chi phi thue");
+    
+            System.out.print("Nhap chi phi thue: ");
             myVilla.setFeeRent(sc.nextInt());
-
-            System.out.println("Nhap so luong toi da");
+    
+            System.out.print("Nhap so luong toi da: ");
             myVilla.setNumberMaximumPeople(sc.nextInt());
-
-            System.out.println("Nhap kieu thue");
+    
+            System.out.print("Nhap kieu thue: ");
             myVilla.setStyleRent(sc.nextDouble());
-
-            System.out.println("Ban da nhap Villa" + " " + dem + "tobe continueee!!!!!!!!!!!!!!");
-            sc.hasNextLine();
-            Villa.add(myVilla);
-            dem++;
+    
+            System.out.println("Ban da nhap Villa thanh cong" + " " + dem + "Enter de tiep tuc");
+            sc.nextLine();
+            villaList.add(myVilla);
+            dem = dem + 1;
         }
-        addNewService();
+        
+        displayMainMenu();
     }
     // String csvFile = "data/data.csv";
     // try() 
@@ -189,33 +227,33 @@ public class MainController {
             sc.nextLine();
             myHouse.setRoomStandard(sc.nextInt());
 
-            System.out.println("Nhap mo ta tien nghi khac");
+            System.out.println("Nhap mo ta tien nghi khac: ");
             myHouse.setDescriptionOfOther(sc.nextInt());
 
-            System.out.println("Nhap so tang");
+            System.out.println("Nhap so tang: ");
             myHouse.setFloor(sc.nextInt());
 
             System.out.println("Nhap ten dich vu: ");
             myHouse.setServiceName(sc.nextLine());
 
-            System.out.println("Nhap dien tich su dung");
+            System.out.println("Nhap dien tich su dung: ");
             myHouse.setUsableArea(sc.nextInt());
 
-            System.out.println("Nhap chi phi thue");
+            System.out.println("Nhap chi phi thue: ");
             myHouse.setFeeRent(sc.nextInt());
 
-            System.out.println("Nhap so luong toi da");
+            System.out.println("Nhap so luong toi da: ");
             myHouse.setNumberMaximumPeople(sc.nextInt());
 
-            System.out.println("Nhap kieu thue");
+            System.out.println("Nhap kieu thue: ");
             myHouse.setStyleRent(sc.nextDouble());
 
-            System.out.println("Ban da nhap House" + " " + dem + "tobe continueee!!!!!!!!!!!!!!");
-            sc.hasNextLine();
+            System.out.println("Ban da nhap House thanh cong" + " " + dem + "Tobe continueee!!!!!!!");
+            sc.nextLine();
             houseList.add(myHouse);
-            dem = dem +1;
+            dem = dem + 1;
         }
-        addNewService();
+        displayMainMenu();
 
     }
     //case3: 
@@ -226,7 +264,7 @@ public class MainController {
         int soLuong =sc.nextInt();
         while(dem < soLuong) {
             Room myRoom = new Room();
-            System.out.println("Nhap dich vu mien phi di kem");
+            System.out.println("Nhap dich vu mien phi di kem: ");
             sc.nextLine();
             myRoom.setFreeServices(sc.nextLine());
 
@@ -234,24 +272,24 @@ public class MainController {
             Services myHouse;
             myRoom.setServiceName(sc.nextLine());
 
-            System.out.println("Nhap dien tich su dung");
+            System.out.println("Nhap dien tich su dung: ");
             myRoom.setUsableArea(sc.nextInt());
 
-            System.out.println("Nhap chi phi thue");
+            System.out.println("Nhap chi phi thue: ");
             myRoom.setFeeRent(sc.nextInt());
 
-            System.out.println("Nhap so luong toi da");
+            System.out.println("Nhap so luong toi da: ");
             myRoom.setNumberMaximumPeople(sc.nextInt());
 
-            System.out.println("Nhap kieu thue");
+            System.out.println("Nhap kieu thue: ");
             myRoom.setStyleRent(sc.nextDouble());
 
-            System.out.println("Ban da nhap House" + " " + dem + "tobe continueee!!!!!!!!!!!!!!");
+            System.out.println("Ban da nhap room thanh cong: " + " " + dem + "tobe continueee!!!!!!!");
             sc.hasNextLine();
             roomList.add(myRoom);
-            dem = dem+1;
+            dem = dem + 1;
         }
-        addNewService();
+        displayMainMenu();
     }
 
     //case4:

@@ -28,9 +28,9 @@ public class Room extends Services{
     @Override
     public void showInfor() {
         // TODO Auto-generated method stub
-        System.out.println("Room {" + "freeServices='" + freeServices  + "serviceName='"
-        + getServiceName() +'\''+ "usableArea='" + getUsableArea() + '\'' + " feeRent='"+ 
-       getFeeRent() + '\'' + " numberMaximumPeople=' "+ getNumberMaximumPeople() + 
-       '\'' + "styleRent='" + getStyleRent() + '}');
+        System.out.println("Room {" + "freeServices='" + freeServices  + "Ten dich vu mien phi"
+        + getServiceName() +'\n'+ "Dien tich su dung" + getUsableArea() + '\n' + "Phi thue la: "+ 
+       getFeeRent() + '\n' + "So luong nguoi toi da la: "+ getNumberMaximumPeople() + 
+       '\n' + "Kieu thue la: " + getStyleRent() + '}');
     }
 }

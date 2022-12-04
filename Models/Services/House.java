@@ -52,11 +52,11 @@ public class House extends Services{
         //feeRent, numberMaximumPeople, styleRent);
   
         System.out.println("House{" + "roomStandard='"+ roomStandard 
-        + '\'' + "descriptionOfOthers='" + descriptionOfOther+ '\'' + 
-        "Floor='" + floor+ '\'' + "serviceName='" + getServiceName() +'\''
-        + "usableArea='" + getUsableArea() + '\'' + " feeRent='"+ 
-        getFeeRent() + '\'' + " numberMaximumPeople=' "+ getNumberMaximumPeople() + 
-        '\'' + "styleRent='" + getStyleRent() + '}');
+        + '\n' + "descriptionOfOthers='" + descriptionOfOther+ '\'' + 
+        "Floor='" + floor+ '\'' + "en dich vu: " + getServiceName() +'\''
+        + "Dien tich su dung: " + getUsableArea() + '\'' + "Phi thue la: "+ 
+        getFeeRent() + '\'' + "So luong nguoi toi da: "+ getNumberMaximumPeople() + 
+        '\'' + "Kieu thue la: " + getStyleRent() + '}');
         
     }
 }

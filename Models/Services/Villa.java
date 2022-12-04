@@ -70,13 +70,17 @@ public class Villa extends Services {
 
     @Override
     public void showInfor() {
+        
         // TODO Auto-generated method stub
         //super(roomStandard, descriptionOfOther, poolArea, floor)
-        System.out.println("Villa {" + "serviceName='" + getServiceName() +'\''
-        + "usableArea='" + getUsableArea() + '\'' + " feeRent='"+ 
-        getFeeRent() + '\'' + " numberMaximumPeople=' "+ getNumberMaximumPeople() + 
-        '\'' + "styleRent='" + getStyleRent() + "roomStandard='" + roomStandard + '\'' + "descriptionOfOther"
-        + descriptionOfOther + '\'' + "poolArea=' " + poolArea + '\'' + '}');
+        System.out.println("Villa: " + "Ten dich vu la: " + getServiceName() +'\n'
+        + "Dien tich su dung la: " + getUsableArea() + '\n' + "Chi phi thue la: "+ 
+        getFeeRent() + '\n' + "So luong toi da la: "+ getNumberMaximumPeople() + 
+        '\n' + "Kieu thue la: " + getStyleRent()+ '\n' + "So tang la: " + getRoomStandard() + '\n' + "Mo ta tien nghi khac: " + getDescriptionOfOther() +
+        '\n' + "Dien tich ho boi la: " + getPoolArea());
+        
+        // getroomStandard() + '\n' + "Mo ta tien nghi khac: "
+        // + getdescriptionOfOther() + '\n' + "Dien tich ho boi la: " + getpoolArea() + '\n');
     }
 
     public static void add(Villa myVilla) {
