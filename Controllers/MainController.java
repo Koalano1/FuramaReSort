@@ -24,6 +24,7 @@ public class MainController {
 
     private static void displayMainMenu() {
         Scanner sc = new Scanner(System.in);
+        
 
         System.out.println("=========MAIN MENU==========");
         System.out.println("1. Add New Service");
@@ -33,6 +34,7 @@ public class MainController {
         System.out.println("5. Add New Booking");
         System.out.println("6. Show Information of Employee");
         System.out.println("7. Exit");
+        System.out.println("Ban muon thuc hien yeu cau nao?");
 
         int luaChon;
         luaChon = sc.nextInt();
@@ -167,14 +169,17 @@ public class MainController {
     //case1: 
     private static void addNewVilla() {
         Scanner sc = new Scanner(System.in);
+
+        System.out.println("So luong villa muon them vao la: ");
+
         int soLuong = sc.nextInt();
     
-        int dem = 0;
+        int dem = 1;
         while(dem < soLuong) {
             Villa myVilla = new Villa();
-    
+
             System.out.print("Nhap tieu chuan phong: ");
-            sc.nextLine();
+            // sc.nextLine();
             myVilla.setRoomStandard(sc.nextInt());
     
             System.out.print("Nhap mo ta tien nghi khac: ");
@@ -202,7 +207,7 @@ public class MainController {
             System.out.print("Nhap kieu thue: ");
             myVilla.setStyleRent(sc.nextDouble());
     
-            System.out.println("Ban da nhap Villa thanh cong" + " " + dem + "Enter de tiep tuc");
+            System.out.println("Ban da nhap Villa thanh cong" + " " + dem + " " + "Enter de tiep tuc");
             sc.nextLine();
             villaList.add(myVilla);
             dem = dem + 1;
@@ -217,14 +222,16 @@ public class MainController {
     private static void addNewHouse(){
         Scanner sc = new Scanner(System.in);
 
+        System.out.println("So luong house muon them vao la: ");
+
         int soLuong = sc.nextInt();
 
-        int dem = 0;
+        int dem = 1;
         while(dem < soLuong) {
             House myHouse = new House();
 
             System.out.println("Nhap tieu chuan phong: ");
-            sc.nextLine();
+            // sc.nextLine();
             myHouse.setRoomStandard(sc.nextInt());
 
             System.out.println("Nhap mo ta tien nghi khac: ");
@@ -235,6 +242,7 @@ public class MainController {
 
             System.out.println("Nhap ten dich vu: ");
             myHouse.setServiceName(sc.nextLine());
+            sc.nextLine();
 
             System.out.println("Nhap dien tich su dung: ");
             myHouse.setUsableArea(sc.nextInt());
@@ -248,7 +256,7 @@ public class MainController {
             System.out.println("Nhap kieu thue: ");
             myHouse.setStyleRent(sc.nextDouble());
 
-            System.out.println("Ban da nhap House thanh cong" + " " + dem + "Tobe continueee!!!!!!!");
+            System.out.println("Ban da nhap House thanh cong" + " " + dem + " " + "Tobe continueee!!!!!!!");
             sc.nextLine();
             houseList.add(myHouse);
             dem = dem + 1;
@@ -260,8 +268,10 @@ public class MainController {
     private static void addNewRoom() {
         Scanner sc = new Scanner(System.in);
 
-        int dem = 0;
+        System.out.println("So luong room muon them vao la: ");
+
         int soLuong =sc.nextInt();
+        int dem = 1;
         while(dem < soLuong) {
             Room myRoom = new Room();
             System.out.println("Nhap dich vu mien phi di kem: ");
@@ -284,7 +294,7 @@ public class MainController {
             System.out.println("Nhap kieu thue: ");
             myRoom.setStyleRent(sc.nextDouble());
 
-            System.out.println("Ban da nhap room thanh cong: " + " " + dem + "tobe continueee!!!!!!!");
+            System.out.println("Ban da nhap room thanh cong" + " " + dem + " " + "tobe continueee!!!!!!!");
             sc.hasNextLine();
             roomList.add(myRoom);
             dem = dem + 1;
