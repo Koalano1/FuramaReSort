@@ -55,7 +55,7 @@ public class House extends Services{
         + '\n' + "Mo ta tien nghi khac: " + descriptionOfOther+ '\n' + 
         "So tang la: " + floor+ '\n' + "Ten dich vu: " + getServiceName() +'\n'
         + "Dien tich su dung: " + getUsableArea() + '\n' + "Phi thue la: "+ 
-        getFeeRent() + '\n' + "So luong nguoi toi da: "+ getNumberMaximumPeople() + 
+        getFeeRent() + '\n' + "So luong nguoi toi da: " + getNumberMaximumPeople() +
         '\n' + "Kieu thue la: " + getStyleRent());
         
     }

@@ -69,6 +69,7 @@ public class MainController {
 
     private static void addService() {//task 3
         Scanner sc = new Scanner(System.in);
+
         System.out.println("1. Show all Villa");
         System.out.println("2. Show all House");
         System.out.println("3. Show all Room");
@@ -77,6 +78,8 @@ public class MainController {
         System.out.println("6. Show All Name Room Not Duplicate");
         System.out.println("7. Back to menu");
         System.out.println("8. Exit");
+        System.out.println("Ban muon chon cai nao?");
+
 
         int luaChon;
         luaChon = sc.nextInt();
@@ -98,6 +101,7 @@ public class MainController {
             case 6:
                 break;
             case 7:
+                backToMenu();
                 break;
             case 8:
                 Exit();
@@ -160,7 +164,7 @@ public class MainController {
                 Exit();
                 break;
             default:
-                System.out.println("Ban nhap sai roi! nhap lại đi!!");
+                System.out.println("Ban nhap sai roi! Vui long nhap lại!!");
                 break;
         }
         showNewMenuService();
@@ -295,16 +299,16 @@ public class MainController {
             myRoom.setStyleRent(sc.nextDouble());
 
             System.out.println("Ban da nhap room thanh cong" + " " + dem + " " + "tobe continueee!!!!!!!");
-            sc.hasNextLine();
+            sc.nextLine();
             roomList.add(myRoom);
             dem = dem + 1;
         }
         displayMainMenu();
     }
 
-    //case4:
+    //case4, case 7
     private static void backToMenu() {
-        addNewService();
+        displayMainMenu();
     }
 
     //case5: 
