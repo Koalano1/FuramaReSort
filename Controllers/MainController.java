@@ -145,6 +145,7 @@ public class MainController {
     private static void addNewService() {//mục 2 task 2
         showNewMenuService();
         Scanner sc = new Scanner(System.in);
+
         int soLuong = sc.nextInt();
         
         switch (soLuong) {
@@ -178,7 +179,7 @@ public class MainController {
 
         int soLuong = sc.nextInt();
     
-        int dem = 1;
+        int dem = 0;
         while(dem < soLuong) {
             Villa myVilla = new Villa();
 
@@ -211,7 +212,7 @@ public class MainController {
             System.out.print("Nhap kieu thue: ");
             myVilla.setStyleRent(sc.nextDouble());
     
-            System.out.println("Ban da nhap Villa thanh cong" + " " + dem + " " + "Enter de tiep tuc");
+            System.out.println("Ban da nhap Villa thu" + dem  + 1 + " thanh cong! " + "Enter de tiep tuc");
             sc.nextLine();
             villaList.add(myVilla);
             dem = dem + 1;
@@ -230,7 +231,7 @@ public class MainController {
 
         int soLuong = sc.nextInt();
 
-        int dem = 1;
+        int dem = 0;
         while(dem < soLuong) {
             House myHouse = new House();
 
@@ -260,7 +261,7 @@ public class MainController {
             System.out.println("Nhap kieu thue: ");
             myHouse.setStyleRent(sc.nextDouble());
 
-            System.out.println("Ban da nhap House thanh cong" + " " + dem + " " + "Tobe continueee!!!!!!!");
+            System.out.println("Ban da nhap House thu" + " " + dem + 1 + " thanh cong! " + "Tobe continueee!!!!!!!");
             sc.nextLine();
             houseList.add(myHouse);
             dem = dem + 1;
@@ -275,7 +276,8 @@ public class MainController {
         System.out.println("So luong room muon them vao la: ");
 
         int soLuong =sc.nextInt();
-        int dem = 1;
+
+        int dem = 0;
         while(dem < soLuong) {
             Room myRoom = new Room();
             System.out.println("Nhap dich vu mien phi di kem: ");
@@ -298,7 +300,7 @@ public class MainController {
             System.out.println("Nhap kieu thue: ");
             myRoom.setStyleRent(sc.nextDouble());
 
-            System.out.println("Ban da nhap room thanh cong" + " " + dem + " " + "tobe continueee!!!!!!!");
+            System.out.println("Ban da nhap room thu" + " " + dem + 1 + " thanh cong! " + "tobe continueee!!!!!!!");
             sc.nextLine();
             roomList.add(myRoom);
             dem = dem + 1;
