@@ -1,6 +1,8 @@
 package Controllers;
 import java.util.Collections;
 import java.util.List;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,7 +10,6 @@ import Models.Services.House;
 import Models.Services.Room;
 import Models.Services.Services;
 import Models.Services.Villa;
-import Views.main;
 
 
 public class MainController {
@@ -47,7 +48,7 @@ public class MainController {
                 addService();
                 break;
             case 3: 
-                //task 5
+                writeFileDataVilla();
                 break; 
             case 4:
                 //task 5
@@ -69,6 +70,7 @@ public class MainController {
 
     private static void addService() {//task 3
         Scanner sc = new Scanner(System.in);
+        
 
         System.out.println("1. Show all Villa");
         System.out.println("2. Show all House");
@@ -170,6 +172,23 @@ public class MainController {
         }
         showNewMenuService();
     }
+    public static void writeFileDataVilla(){
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("output.csv"))) {
+            bw.write("Name");
+            bw.write(",");
+            bw.write("Role");
+            bw.write(",");
+            bw.write("Topic");
+            bw.newLine();
+
+            // for (Villa villa : villaList) {
+            //     bw.write(String.join(",", villa));
+            //     bw.newLine();
+            // }
+        }catch(Exception e){
+
+        }
+    }
 
     //case1: 
     private static void addNewVilla() {
@@ -212,7 +231,7 @@ public class MainController {
             System.out.print("Nhap kieu thue: ");
             myVilla.setStyleRent(sc.nextDouble());
     
-            System.out.println("Ban da nhap Villa thu" + dem  + 1 + " thanh cong! " + "Enter de tiep tuc");
+            System.out.println("Ban da nhap Villa thu " + dem  + 1 + " thanh cong! " + "Enter de tiep tuc");
             sc.nextLine();
             villaList.add(myVilla);
             dem = dem + 1;
@@ -261,7 +280,7 @@ public class MainController {
             System.out.println("Nhap kieu thue: ");
             myHouse.setStyleRent(sc.nextDouble());
 
-            System.out.println("Ban da nhap House thu" + " " + dem + 1 + " thanh cong! " + "Tobe continueee!!!!!!!");
+            System.out.println("Ban da nhap House thu " + " " + dem + 1 + " thanh cong! " + "Tobe continueee!!!!!!!");
             sc.nextLine();
             houseList.add(myHouse);
             dem = dem + 1;
@@ -300,7 +319,7 @@ public class MainController {
             System.out.println("Nhap kieu thue: ");
             myRoom.setStyleRent(sc.nextDouble());
 
-            System.out.println("Ban da nhap room thu" + " " + dem + 1 + " thanh cong! " + "tobe continueee!!!!!!!");
+            System.out.println("Ban da nhap room thu " + " " + dem + 1 + " thanh cong! " + "tobe continueee!!!!!!!");
             sc.nextLine();
             roomList.add(myRoom);
             dem = dem + 1;
