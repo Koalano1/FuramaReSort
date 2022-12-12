@@ -3,6 +3,9 @@ import java.util.Collections;
 import java.util.List;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.io.Writer;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,6 +16,7 @@ import Models.Services.Villa;
 
 
 public class MainController {
+    private static final DateTimeFormatter DateTimeFortmatter = null;
     private static ArrayList<Villa> villaList = new ArrayList<>();
     private static ArrayList<House> houseList = new ArrayList<>();
     private static ArrayList<Room> roomList = new ArrayList<>();
@@ -35,6 +39,7 @@ public class MainController {
         System.out.println("5. Add New Booking");
         System.out.println("6. Show Information of Employee");
         System.out.println("7. Exit");
+        System.out.println("8. Ghi vao file data ");
         System.out.println("Ban muon thuc hien yeu cau nao?");
 
         int luaChon;
@@ -45,10 +50,10 @@ public class MainController {
                 addNewService();
                 break;
             case 2:
-                addService();
+                showService();
                 break;
             case 3: 
-                writeFileDataVilla();
+                
                 break; 
             case 4:
                 //task 5
@@ -61,14 +66,16 @@ public class MainController {
                 break;
             case 7:
                 Exit();
-                break;                 
+                break;
+            case 8:
+                writeFileData();                     
             default:
                 System.out.println("Ban da nhap sai. Vui long nhap lai!!!");
                 break;
         }
     }
 
-    private static void addService() {//task 3
+    private static void showService() {//task 3
         Scanner sc = new Scanner(System.in);
         
 
@@ -97,10 +104,13 @@ public class MainController {
                 showAllRoom();
                 break;
             case 4: 
+                //task 8
                 break;
             case 5:
+                //task 8
                 break;
             case 6:
+                //task 8
                 break;
             case 7:
                 backToMenu();
@@ -109,29 +119,41 @@ public class MainController {
                 Exit();
                 break;        
             default:
-                System.out.println("Ban nhap sai roi! Vui long nhap lai...");
+                System.out.println("Ban nhap sai roi. Vui long nhap lai!!!");
                 break;
         }
 
     }
     private static void showAllRoom() {
-        for(Room room: roomList){
+       int i = 1;
+       for(Room room : roomList){
+            System.out.println("Room thu "+ i + " la");
             room.showInfor();
-        }
-        displayMainMenu();
+            i++;
+       }
+
+       displayMainMenu();
+
     }
 
     private static void showAllHouse() {
-        for(House house: houseList){
+       int i = 1;
+       for(House house: houseList){
+            System.out.println("House thu "+ i + " la");
             house.showInfor();
-        }
-        displayMainMenu();
+            i++;
+       }
+       displayMainMenu();
     }
 
     private static void showAllVilla() {
-        for(Villa villa: villaList) {
+        int i = 1;
+        for(Villa villa: villaList){
+            System.out.println("Villa thu "+  i +" la");
             villa.showInfor();
+            i++;
         }
+        
         displayMainMenu();
     }
     
@@ -172,23 +194,156 @@ public class MainController {
         }
         showNewMenuService();
     }
-    public static void writeFileDataVilla(){
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("output.csv"))) {
-            bw.write("Name");
-            bw.write(",");
-            bw.write("Role");
-            bw.write(",");
-            bw.write("Topic");
-            bw.newLine();
 
-            // for (Villa villa : villaList) {
-            //     bw.write(String.join(",", villa));
-            //     bw.newLine();
-            // }
-        }catch(Exception e){
+    public static void writeFileData(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("1. Write file data Villa");
+        System.out.println("2. Write file data House");
+        System.out.println("3. Write file data Room");
 
+        int luaChon;
+        luaChon =sc.nextInt();
+
+        switch (luaChon) {
+            case 1:
+                writeFileDataVilla();
+                break;
+            case 2: 
+                writeFileDataHouse();
+                break;
+            case 3:
+                writeFileDataRoom();
+                break;    
+            default:
+                System.out.println("Khong co file nao duoc ghi o day. Vui long nhap lai!!!");
+                break;
         }
     }
+    public static void writeFileDataVilla(){
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("Villa.csv"))) {
+            bw.write("Thong tin cua Villa la: ");
+            bw.newLine();
+            
+            for(int i = 0; i < villaList.size(); i++){
+                bw.write("Villa " + (i + 1) +":");
+                bw.newLine();
+                // bw.newLine();
+                bw.write("Ten dich vu: "+ villaList.get(i).getServiceName());
+                bw.newLine();
+                
+                bw.write("Dien tich su dung: "+ villaList.get(i).getUsableArea());
+                bw.newLine();
+
+                bw.write("Phi thue: "+ villaList.get(i).getFeeRent());
+                bw.newLine();
+
+                bw.write("So luong nguoi toi da: "+ villaList.get(i).getNumberMaximumPeople());
+                bw.newLine();
+                
+                bw.write("Kieu thue: "+ villaList.get(i).getStyleRent());
+                bw.newLine();
+
+                bw.write("Tieu chuan phong: " + villaList.get(i).getRoomStandard());
+                bw.newLine();
+
+                bw.write("Mo ta tien nghi khac: " + villaList.get(i).getDescriptionOfOther());
+                bw.newLine();
+
+                bw.write("So tang: "+ villaList.get(i).getFloor());
+                bw.newLine();
+
+                bw.write("Dien tich ho boi: "+ villaList.get(i).getPoolArea());
+                bw.newLine();
+            }
+           
+            bw.newLine();
+
+
+        }catch(Exception e){
+            System.out.println("Da co loi trong ghi file. Moi quay ve menu chinh!!!");
+            displayMainMenu();
+        }
+
+        System.out.println(java.time.LocalDateTime.now()); 
+        // DateTimeFormatter dft = DateTimeFortmatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        // LocalDate now = LocalDate.now();
+        // System.out.println(dft.format(now));
+
+    }
+    public static void writeFileDataHouse(){
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter("House.csv"))) {
+            bw.write("Thong tin cua House la: ");
+            bw.newLine();
+
+            for(int i = 0; i < houseList.size(); i++){
+                bw.write("House " + (i + 1) +":");
+                bw.newLine();
+                // bw.newLine();
+                bw.write("Ten dich vu: "+ houseList.get(i).getServiceName());
+                bw.newLine();
+                
+                bw.write("Dien tich su dung: "+ houseList.get(i).getUsableArea());
+                bw.newLine();
+
+                bw.write("Phi thue: "+ houseList.get(i).getFeeRent());
+                bw.newLine();
+
+                bw.write("So luong nguoi toi da: "+ houseList.get(i).getNumberMaximumPeople());
+                bw.newLine();
+                
+                bw.write("Kieu thue: "+ houseList.get(i).getStyleRent());
+                bw.newLine();
+
+                bw.write("Tieu chuan phong: "+ houseList.get(i).getRoomStandard());
+                bw.newLine();
+
+                bw.write("Mo ta tien nghi khac: "+ houseList.get(i).getDescriptionOfOther());
+                bw.newLine();
+
+                bw.write("So tang: "+ houseList.get(i).getFloor());
+                bw.newLine();
+            }
+            bw.newLine();
+            
+        } catch (Exception e) {
+           System.out.println("Da co loi trong ghi file. Moi quay ve menu chinh!!!");
+           displayMainMenu();
+        }
+        
+    }
+
+    public static void writeFileDataRoom(){
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter("Room.csv"))) {
+            bw.write("Thong tin cua Room la: ");
+            bw.newLine();
+            for(int i = 0; i < roomList.size(); i++){
+                bw.write("Room " + (i + 1) +":");
+                bw.newLine();
+                // bw.newLine();
+                bw.write("Ten dich vu: "+ roomList.get(i).getServiceName());
+                bw.newLine();
+                
+                bw.write("Dien tich su dung: "+ roomList.get(i).getUsableArea());
+                bw.newLine();
+
+                bw.write("Phi thue: "+ roomList.get(i).getFeeRent());
+                bw.newLine();
+
+                bw.write("So luong nguoi toi da: "+ roomList.get(i).getNumberMaximumPeople());
+                bw.newLine();
+                
+                bw.write("Kieu thue: "+ roomList.get(i).getStyleRent());
+                bw.newLine();
+
+                bw.write("Dich vu mien phi: "+ roomList.get(i).getFreeServices());
+                bw.newLine();
+            }
+        } catch (Exception e) {
+            System.out.println("Da co loi trpng ghi file. vui long quay ve menu chinh!!!");
+            displayMainMenu();
+        }
+    }
+
 
     //case1: 
     private static void addNewVilla() {
@@ -231,7 +386,7 @@ public class MainController {
             System.out.print("Nhap kieu thue: ");
             myVilla.setStyleRent(sc.nextDouble());
     
-            System.out.println("Ban da nhap Villa thu " + dem  + 1 + " thanh cong! " + "Enter de tiep tuc");
+            System.out.println("Ban da nhap Villa thu " + (dem  + 1) + " thanh cong! " + "Enter de tiep tuc");
             sc.nextLine();
             villaList.add(myVilla);
             dem = dem + 1;
@@ -239,8 +394,6 @@ public class MainController {
         
         displayMainMenu();
     }
-    // String csvFile = "data/data.csv";
-    // try() 
 
     //case2:
     private static void addNewHouse(){
@@ -280,11 +433,12 @@ public class MainController {
             System.out.println("Nhap kieu thue: ");
             myHouse.setStyleRent(sc.nextDouble());
 
-            System.out.println("Ban da nhap House thu " + " " + dem + 1 + " thanh cong! " + "Tobe continueee!!!!!!!");
+            System.out.println("Ban da nhap House thu " + " " + (dem + 1) + " thanh cong! " + "Tobe continueee!!!");
             sc.nextLine();
             houseList.add(myHouse);
             dem = dem + 1;
         }
+
         displayMainMenu();
 
     }
@@ -319,7 +473,7 @@ public class MainController {
             System.out.println("Nhap kieu thue: ");
             myRoom.setStyleRent(sc.nextDouble());
 
-            System.out.println("Ban da nhap room thu " + " " + dem + 1 + " thanh cong! " + "tobe continueee!!!!!!!");
+            System.out.println("Ban da nhap room thu " + " " + (dem + 1) + " thanh cong! " + "tobe continueee!!!");
             sc.nextLine();
             roomList.add(myRoom);
             dem = dem + 1;
@@ -336,6 +490,8 @@ public class MainController {
     private static void Exit() {
         System.exit(0);
     }
+
+
 
     
 }
