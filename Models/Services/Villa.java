@@ -7,18 +7,44 @@ public class Villa extends Services {
     private int descriptionOfOther;
     private double poolArea;
     private int floor;
+    private String IDVilla;
 
+    
 
     public Villa() {
     }
 
+    
+    
 
-    public Villa(int roomStandard, int descriptionOfOther, double poolArea, int floor) {
+
+
+    public Villa(int roomStandard, int descriptionOfOther, double poolArea, int floor, String iDVilla) {
         this.roomStandard = roomStandard;
         this.descriptionOfOther = descriptionOfOther;
         this.poolArea = poolArea;
         this.floor = floor;
+        IDVilla = iDVilla;
     }
+
+
+
+
+
+
+    public Villa(String serviceName, double usableArea, int feeRent, int numberMaximumPeople, double styleRent,
+            int roomStandard, int descriptionOfOther, double poolArea, int floor, String iDVilla) {
+        super(serviceName, usableArea, feeRent, numberMaximumPeople, styleRent);
+        this.roomStandard = roomStandard;
+        this.descriptionOfOther = descriptionOfOther;
+        this.poolArea = poolArea;
+        this.floor = floor;
+        IDVilla = iDVilla;
+    }
+
+
+
+
 
 
     public int getRoomStandard() {
@@ -73,17 +99,37 @@ public class Villa extends Services {
         
         // TODO Auto-generated method stub
         //super(roomStandard, descriptionOfOther, poolArea, floor)
-        System.out.println("Villa: " + '\n'
+        System.out.println(+ '\n'
         + "Dien tich su dung la: " + getUsableArea() + '\n' + "Chi phi thue la: " +
         getFeeRent() + '\n' + "So luong toi da la: "+ getNumberMaximumPeople() + 
-        '\n' + "Kieu thue la: " + getStyleRent()+ '\n' + "So tang la: " + getRoomStandard() + '\n' + "Mo ta tien nghi khac: " + getDescriptionOfOther() +
+        '\n' + "Kieu thue la: " + getStyleRent()+ '\n' + "Tieu chuan phong la: " + getRoomStandard() + '\n' + "Mo ta tien nghi khac: " + getDescriptionOfOther() +
         '\n' + "Dien tich ho boi la: " + getPoolArea());
         
     }
 
-    public static void add(Villa myVilla) {
-        
+
+
+
+
+
+    public String getIDVilla() {
+        return IDVilla;
     }
+
+
+
+
+
+
+    public void setIDVilla(String iDVilla) {
+        IDVilla = iDVilla;
+    }
+
+
+  
+    // public static void add(Villa myVilla) {
+
+    // }
 
 
 }

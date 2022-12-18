@@ -13,6 +13,7 @@ import Models.Services.House;
 import Models.Services.Room;
 import Models.Services.Services;
 import Models.Services.Villa;
+import Validate.ServiceValidation;
 
 
 public class MainController {
@@ -356,6 +357,15 @@ public class MainController {
         int dem = 0;
         while(dem < soLuong) {
             Villa myVilla = new Villa();
+            // String IDVilla = null;
+            // do {
+            //     System.out.println("Nhap ID Villa: ");
+            //     IDVilla = sc.nextLine();
+            // } while (ServiceValidation.checkIDVilla(IDVilla));
+            // myVilla.setIDVilla(IDVilla);
+            // System.out.println("test");
+            // String abc = sc.next();
+            // System.out.println(abc);
 
             System.out.print("Nhap tieu chuan phong: ");
             // sc.nextLine();

@@ -95,6 +95,10 @@ public class Customer {
                 + ", identityCardNumber=" + identityCardNumber + ", name=" + name + ", phoneNumber=" + phoneNumber
                 + ", sex=" + sex + ", typeOfGuest=" + typeOfGuest + "]";
     }
-
+    @Override
+    public void showInfor(){
+        
+    }
+    
     
 }

@@ -51,7 +51,7 @@ public class House extends Services{
         //super(roomStandard, descriptionOfOther, floor, serviceName, usableArea,
         //feeRent, numberMaximumPeople, styleRent);
   
-        System.out.println("House: " + '\n'+ "Tieu chuan phong la: "+ roomStandard 
+        System.out.println(+ '\n'+ "Tieu chuan phong la: "+ roomStandard 
         + '\n' + "Mo ta tien nghi khac: " + descriptionOfOther+ '\n' + 
         "So tang la: " + floor+ '\n' + "Ten dich vu: " + getServiceName() +'\n'
         + "Dien tich su dung: " + getUsableArea() + '\n' + "Phi thue la: "+ 

@@ -24,7 +24,7 @@ public class ServiceValidate {
     
     //Validate Name of Service(upercOfase the first character)
     public static boolean checkNameServices(String str) {
-        regex = "";
+        regex = "ROVL-[\\]";
         return str.matches(regex);
     }
 }
