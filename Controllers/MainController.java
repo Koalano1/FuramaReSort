@@ -53,7 +53,8 @@ public class MainController {
             case 2:
                 showService();
                 break;
-            case 3: 
+            case 3:
+                addNewCustomer();
                 
                 break; 
             case 4:
@@ -74,6 +75,10 @@ public class MainController {
                 System.out.println("Ban da nhap sai. Vui long nhap lai!!!");
                 break;
         }
+    }
+
+    private static void addNewCustomer() {
+        System.out.println("helooo");
     }
 
     private static void showService() {//task 3
