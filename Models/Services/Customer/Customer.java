@@ -5,7 +5,7 @@ import Models.Services.Services;
 public class Customer {
     public String name;
     public int dateOfBirth;
-    public boolean sex;
+    public String sex;
     public int identityCardNumber;
     public double phoneNumber;
     public double emailAddress;
@@ -17,7 +17,7 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String name, int dateOfBirth, boolean sex, int identityCardNumber, double phoneNumber, double emailAddress, int typeOfGuest, String address, Services userServices) {
+    public Customer(String name, int dateOfBirth, String sex, int identityCardNumber, double phoneNumber, double emailAddress, int typeOfGuest, String address, Services userServices) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.sex = sex;
@@ -46,11 +46,11 @@ public class Customer {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public boolean isSex() {
+    public String isSex() {
         return sex;
     }
 
-    public void setSex(boolean sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 
@@ -119,5 +119,6 @@ public class Customer {
                 ", userServices=" + userServices +
                 '}';
     }
+
 
 }

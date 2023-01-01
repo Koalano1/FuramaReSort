@@ -1,4 +1,5 @@
 package Controllers;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.io.BufferedWriter;
@@ -9,6 +10,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Models.Services.Customer.Customer;
 import Models.Services.House;
 import Models.Services.Room;
 import Models.Services.Services;
@@ -22,6 +24,7 @@ public class MainController {
     private static ArrayList<House> houseList = new ArrayList<>();
     private static ArrayList<Room> roomList = new ArrayList<>();
     private static ArrayList<Services> servicesList = new ArrayList<>();
+    private static ArrayList<Customer> customerList = new ArrayList<>();
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -55,10 +58,9 @@ public class MainController {
                 break;
             case 3:
                 addNewCustomer();
-                
                 break; 
             case 4:
-                //task 5
+                showInformationCustomer();
                 break;   
             case 5:
                 //task 7
@@ -77,8 +79,62 @@ public class MainController {
         }
     }
 
-    private static void addNewCustomer() {
-        System.out.println("helooo");
+    private static void showInformationCustomer() {//task 5 ý 3
+        int i = 1;
+        for(Customer customer: customerList){
+            System.out.println("Customer thu "+ i + " la");
+            customer.toString();
+            i++;
+        }
+        displayMainMenu();
+    }
+
+    private static void addNewCustomer() {//task 5 ý 2
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Nhap so luong khach hang muon them vao la: ");
+
+        int soLuong = sc.nextInt();
+
+        int dem = 0;
+        while(dem < soLuong){
+            Customer myCustomer = new Customer();
+
+            System.out.println("Ho ten Customer: ");
+            sc.nextLine();
+            myCustomer.setName(sc.nextLine());
+
+            System.out.println("Ngay sinh Customer: ");
+            myCustomer.setDateOfBirth(sc.nextInt());
+
+            System.out.println("Gioi tinh Customer: ");
+            myCustomer.setSex(sc.nextLine());
+
+            System.out.println("So chung minh nhan dan Customer: ");
+            myCustomer.setIdentityCardNumber(sc.nextInt());
+
+            System.out.println("So dien thoai Customer: ");
+            myCustomer.setPhoneNumber(sc.nextDouble());
+
+            System.out.println("Dia chi email: ");
+            myCustomer.setEmailAddress(sc.nextDouble());
+
+            System.out.println("Loại Customer: ");
+            myCustomer.setTypeOfGuest(sc.nextInt());
+
+            System.out.println("Dia chi: ");
+            myCustomer.setAddress(sc.nextLine());
+
+            System.out.println("Su dung dich vu: ");
+            //myCustomer.setUserServices(new Customer());
+
+            System.out.println("Ban da nhap khach hang thu " + (dem + 1) + " thanh cong " + "Nhan enter de tiep tuc!!!");
+            sc.nextLine();
+            customerList.add(myCustomer);
+            dem = dem + 1;
+
+        }
+        displayMainMenu();
     }
 
     private static void showService() {//task 3
@@ -219,12 +275,59 @@ public class MainController {
                 break;
             case 3:
                 writeFileDataRoom();
-                break;    
+                break;
+            case 4:
+                writeFileCustomer();
             default:
                 System.out.println("Khong co file nao duoc ghi o day. Vui long nhap lai!!!");
                 break;
         }
     }
+
+    private static void writeFileCustomer() {
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter("Customer.CSV"))){
+            bw.write("Thong tin cua Customer: ");
+            bw.newLine();
+
+            for(int i = 0; i < customerList.size(); i++){
+                bw.write("Customer "+ (i + 1)+":");
+                bw.newLine();
+
+                bw.write("Ho Ten Customer: "+ customerList.get(i).getName());
+                bw.newLine();
+
+                bw.write("Ngay sinh: "+ customerList.get(i).getDateOfBirth());
+                bw.newLine();
+
+                bw.write("Gioi tinh: "+ customerList.get(i).getDateOfBirth());
+                bw.newLine();
+
+                bw.write("So chung minh nhan dan Customer: "+ customerList.get(i).getIdentityCardNumber());
+                bw.newLine();
+
+                bw.write("So dien thoai: "+ customerList.get(i).getPhoneNumber());
+                bw.newLine();
+
+                bw.write("Dia chi email: "+ customerList.get(i).getEmailAddress());
+                bw.newLine();
+
+                bw.write("Kieu: "+ customerList.get(i).getTypeOfGuest());
+                bw.newLine();
+
+                bw.write("Dia chi Customer: "+ customerList.get(i).getAddress());
+                bw.newLine();
+
+                bw.write("Su dung dich vu: "+ customerList.get(i).getUserServices());
+                bw.newLine();
+
+            }
+            bw.newLine();
+        } catch (IOException e) {
+            System.out.println("Da co loi trong ghi file. Moi quay ve menu chinh!");
+            displayMainMenu();
+        }
+    }
+
     public static void writeFileDataVilla(){
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("Villa.csv"))) {
             bw.write("Thong tin cua Villa la: ");
