@@ -6,9 +6,9 @@ public class Customer {
     public String name;
     public int dateOfBirth;
     public String sex;
-    public int identityCardNumber;
-    public double phoneNumber;
-    public double emailAddress;
+    public String identityCardNumber;
+    public String phoneNumber;
+    public String emailAddress;
     public int typeOfGuest;
     public String address;
     public Services userServices;
@@ -17,7 +17,7 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String name, int dateOfBirth, String sex, int identityCardNumber, double phoneNumber, double emailAddress, int typeOfGuest, String address, Services userServices) {
+    public Customer(String name, int dateOfBirth, String sex, String identityCardNumber, String phoneNumber, String emailAddress, int typeOfGuest, String address, Services userServices) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.sex = sex;
@@ -28,7 +28,6 @@ public class Customer {
         this.address = address;
         this.userServices = userServices;
     }
-
 
     public String getName() {
         return name;
@@ -46,7 +45,7 @@ public class Customer {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String isSex() {
+    public String getSex() {
         return sex;
     }
 
@@ -54,27 +53,27 @@ public class Customer {
         this.sex = sex;
     }
 
-    public int getIdentityCardNumber() {
+    public String getIdentityCardNumber() {
         return identityCardNumber;
     }
 
-    public void setIdentityCardNumber(int identityCardNumber) {
+    public void setIdentityCardNumber(String identityCardNumber) {
         this.identityCardNumber = identityCardNumber;
     }
 
-    public double getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(double phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public double getEmailAddress() {
+    public String getEmailAddress() {
         return emailAddress;
     }
 
-    public void setEmailAddress(double emailAddress) {
+    public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
 
@@ -101,9 +100,6 @@ public class Customer {
     public void setUserServices(Services userServices) {
         this.userServices = userServices;
     }
-
-
-
 
     @Override
     public String toString() {

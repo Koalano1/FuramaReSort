@@ -1,15 +1,13 @@
 package Controllers;
-import java.io.IOException;
+import java.io.*;
 import java.util.Collections;
 import java.util.List;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.Writer;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Exception.UserException.ExceptionCustomer;
 import Models.Services.Customer.Customer;
 import Models.Services.House;
 import Models.Services.Room;
@@ -80,6 +78,28 @@ public class MainController {
     }
 
     private static void showInformationCustomer() {//task 5 ý 3
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("Customer.CSV"))) {
+            String line = reader.readLine();
+
+            while (line  != null) {
+                Customer customer = new Customer();
+                System.out.println("Ten: " + customer.getName());
+                System.out.println("Ngay sinh: "+ customer.getDateOfBirth());
+                System.out.println("Gioi tinh: "+ customer.getSex());
+                System.out.println("So chung minh nhan dan: "+ customer.getIdentityCardNumber());
+                System.out.println("So dien thoai: "+ customer.getPhoneNumber());
+                System.out.println("Dia chi email: "+ customer.getEmailAddress());
+                System.out.println("Loai khach: "+ customer.getTypeOfGuest());
+                System.out.println("Dia chi: "+ customer.getAddress());
+                System.out.println("Dich vu su dung: "+ customer.getUserServices());
+                customerList.add(customer);
+            }
+        } catch (IOException e) {
+            System.out.println("Da co loi trong doc file. Moi quay lai menu chinh!!!");
+            displayMainMenu();
+        }
+
         int i = 1;
         for(Customer customer: customerList){
             System.out.println("Customer thu "+ i + " la");
@@ -107,23 +127,41 @@ public class MainController {
             System.out.println("Ngay sinh Customer: ");
             myCustomer.setDateOfBirth(sc.nextInt());
 
-            System.out.println("Gioi tinh Customer: ");
-            myCustomer.setSex(sc.nextLine());
+            String checkGender;
+            do{
+                System.out.println("Gioi tinh cua Customer: ");
+                System.out.println("\n VD: MALE / FEMALE / UNKNOWN");
+                checkGender = sc.nextLine();
+            }while(!ExceptionCustomer.checkGenderException(checkGender));
+            myCustomer.setSex(checkGender);
+            sc.nextLine();
 
             System.out.println("So chung minh nhan dan Customer: ");
-            myCustomer.setIdentityCardNumber(sc.nextInt());
+            myCustomer.setIdentityCardNumber(sc.nextLine());
+            sc.nextLine();
 
             System.out.println("So dien thoai Customer: ");
-            myCustomer.setPhoneNumber(sc.nextDouble());
+            myCustomer.setPhoneNumber(sc.nextLine());
+            sc.nextLine();
 
-            System.out.println("Dia chi email: ");
-            myCustomer.setEmailAddress(sc.nextDouble());
+           /* String checkMail;
+            do{
+                System.out.println("Dia chi Email: ");
+                System.out.println("\n vd: @gmail.com");
+                checkMail = sc.nextLine();
+            } while(!ExceptionCustomer.checkEmailException(checkMail));
+            myCustomer.setEmailAddress(checkMail);*/
+
+            System.out.println("Email:");
+            myCustomer.setEmailAddress(sc.nextLine());
+            sc.nextLine();
 
             System.out.println("Loại Customer: ");
             myCustomer.setTypeOfGuest(sc.nextInt());
 
             System.out.println("Dia chi: ");
             myCustomer.setAddress(sc.nextLine());
+            sc.nextLine();
 
             System.out.println("Su dung dich vu: ");
             //myCustomer.setUserServices(new Customer());
@@ -262,6 +300,7 @@ public class MainController {
         System.out.println("1. Write file data Villa");
         System.out.println("2. Write file data House");
         System.out.println("3. Write file data Room");
+        System.out.println("4. Write File Customer");
 
         int luaChon;
         luaChon =sc.nextInt();
