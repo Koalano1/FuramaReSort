@@ -13,7 +13,7 @@ import Models.Services.House;
 import Models.Services.Room;
 import Models.Services.Services;
 import Models.Services.Villa;
-import Validate.ServiceValidation;
+//import Validate.ServiceValidation;
 
 
 public class MainController {
@@ -127,14 +127,16 @@ public class MainController {
             System.out.println("Ngay sinh Customer: ");
             myCustomer.setDateOfBirth(sc.nextInt());
 
-            String checkGender;
+            System.out.println("Gioi tinh: ");
+            myCustomer.setSex(sc.nextLine());
+            /*String checkGender;
             do{
                 System.out.println("Gioi tinh cua Customer: ");
                 System.out.println("\n VD: MALE / FEMALE / UNKNOWN");
                 checkGender = sc.nextLine();
             }while(!ExceptionCustomer.checkGenderException(checkGender));
             myCustomer.setSex(checkGender);
-            sc.nextLine();
+            sc.nextLine();*/
 
             System.out.println("So chung minh nhan dan Customer: ");
             myCustomer.setIdentityCardNumber(sc.nextLine());
@@ -508,11 +510,9 @@ public class MainController {
             // do {
             //     System.out.println("Nhap ID Villa: ");
             //     IDVilla = sc.nextLine();
-            // } while (ServiceValidation.checkIDVilla(IDVilla));
+            // } while (ServiceValidate.checkIDVilla(IDVilla));
             // myVilla.setIDVilla(IDVilla);
-            // System.out.println("test");
-            // String abc = sc.next();
-            // System.out.println(abc);
+
 
             System.out.print("Nhap tieu chuan phong: ");
             // sc.nextLine();
