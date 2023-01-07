@@ -110,46 +110,51 @@ public class MainController {
         while (dem < soLuong) {
             Customer myCustomer = new Customer();
 
-            System.out.println("Ho ten Customer: ");
-            String customerName = sc.nextLine();
-            myCustomer.setName(customerName);
+            String checkName;
+            do{
+                System.out.println("Nhap ten Customer: ");
+                checkName = sc.nextLine();
+                if(!ExceptionCustomer.checkNameException(checkName)){
+                    System.out.println("Ten khach hang phai in hoa ki tu dau tien trong moi tu va khong chua nhung khoang trong");
+                }
+            }while (!ExceptionCustomer.checkNameException(checkName));
+            myCustomer.setName(checkName);
 
-            System.out.println("Ngay sinh Customer: ");
-            int dateOfBirthCus = sc.nextInt();
-            myCustomer.setDateOfBirth(dateOfBirthCus);
-            sc.nextLine();
 
-            System.out.println("Gioi tinh: ");
-            String cusGender = sc.nextLine();
-            myCustomer.setSex(cusGender);
-            /*String checkGender;
+            System.out.println("Nhap ngay sinh Customer: ");
+            String birthday = sc.nextLine();
+            if(!ExceptionCustomer.checkBirthdayException(birthday)){
+                System.out.println("Nam sinh phai > 1900 va nho hon nam hien tai 18 nam, dung dinh dang dd/mm/yyyy");
+            }
+            myCustomer.setDateOfBirth(birthday);
+
+            String checkGender;
             do{
                 System.out.println("Gioi tinh cua Customer: ");
-                System.out.println("\n VD: MALE / FEMALE / UNKNOWN");
+                System.out.println("\n VD: Male / Female / Unknown");
                 checkGender = sc.nextLine();
             }while(!ExceptionCustomer.checkGenderException(checkGender));
             myCustomer.setSex(checkGender);
-            sc.nextLine();*/
 
             System.out.println("So chung minh nhan dan Customer: ");
             String customerIdCard = sc.nextLine();
+            if(!ExceptionCustomer.checkIDCardException(customerIdCard)){
+                System.out.println("ID phai co 9 chu so dinh dang XXX XXX XXX");
+            }
             myCustomer.setIdentityCardNumber(customerIdCard);
+
 
             System.out.println("So dien thoai Customer: ");
             String customerPhone = sc.nextLine();
             myCustomer.setPhoneNumber(customerPhone);
 
-           /* String checkMail;
+            String checkMail;
             do{
                 System.out.println("Dia chi Email: ");
                 System.out.println("\n vd: @gmail.com");
                 checkMail = sc.nextLine();
             } while(!ExceptionCustomer.checkEmailException(checkMail));
-            myCustomer.setEmailAddress(checkMail);*/
-
-            System.out.println("Email:");
-            String cusEmail = sc.nextLine();
-            myCustomer.setEmailAddress(cusEmail);
+            myCustomer.setEmailAddress(checkMail);
 
             System.out.println("Loại Customer: ");
             int cusType = sc.nextInt();
