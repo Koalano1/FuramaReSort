@@ -44,8 +44,7 @@ public class MainController {
         System.out.println("8. Ghi vao file data ");
         System.out.println("Ban muon thuc hien yeu cau nao?");
 
-        int luaChon;
-        luaChon = sc.nextInt();
+        int luaChon = sc.nextInt();
 
         switch (luaChon) {
             case 1:
@@ -77,36 +76,26 @@ public class MainController {
         }
     }
 
-    private static void showInformationCustomer() {//task 5 ý 3
+    private static void showInformationCustomer()  {//task 5 ý 3
 
-        try (BufferedReader reader = new BufferedReader(new FileReader("Customer.CSV"))) {
-            String line = reader.readLine();
-
-            while (line  != null) {
-                Customer customer = new Customer();
-                System.out.println("Ten: " + customer.getName());
-                System.out.println("Ngay sinh: "+ customer.getDateOfBirth());
-                System.out.println("Gioi tinh: "+ customer.getSex());
-                System.out.println("So chung minh nhan dan: "+ customer.getIdentityCardNumber());
-                System.out.println("So dien thoai: "+ customer.getPhoneNumber());
-                System.out.println("Dia chi email: "+ customer.getEmailAddress());
-                System.out.println("Loai khach: "+ customer.getTypeOfGuest());
-                System.out.println("Dia chi: "+ customer.getAddress());
-                System.out.println("Dich vu su dung: "+ customer.getUserServices());
-                customerList.add(customer);
+        try {
+            FileReader fr = new FileReader("D:\\Java_learning\\JavaProject02\\FuramaReSort\\Customer.CSV");
+            BufferedReader br = new BufferedReader(fr);
+            int i;
+            while ((i = br.read()) != -1) {
+                System.out.print((char) i);
             }
-        } catch (IOException e) {
-            System.out.println("Da co loi trong doc file. Moi quay lai menu chinh!!!");
+
+            br.close();
+            fr.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e){
+            System.out.println("Da co loi trong doc ghi file. Vui long quay lai menu");
             displayMainMenu();
         }
 
-        int i = 1;
-        for(Customer customer: customerList){
-            System.out.println("Customer thu "+ i + " la");
-            customer.toString();
-            i++;
-        }
-        displayMainMenu();
+
     }
 
     private static void addNewCustomer() {//task 5 ý 2
@@ -115,20 +104,24 @@ public class MainController {
         System.out.println("Nhap so luong khach hang muon them vao la: ");
 
         int soLuong = sc.nextInt();
+        sc.nextLine();
 
         int dem = 0;
-        while(dem < soLuong){
+        while (dem < soLuong) {
             Customer myCustomer = new Customer();
 
             System.out.println("Ho ten Customer: ");
-            sc.nextLine();
-            myCustomer.setName(sc.nextLine());
+            String customerName = sc.nextLine();
+            myCustomer.setName(customerName);
 
             System.out.println("Ngay sinh Customer: ");
-            myCustomer.setDateOfBirth(sc.nextInt());
+            int dateOfBirthCus = sc.nextInt();
+            myCustomer.setDateOfBirth(dateOfBirthCus);
+            sc.nextLine();
 
             System.out.println("Gioi tinh: ");
-            myCustomer.setSex(sc.nextLine());
+            String cusGender = sc.nextLine();
+            myCustomer.setSex(cusGender);
             /*String checkGender;
             do{
                 System.out.println("Gioi tinh cua Customer: ");
@@ -139,12 +132,12 @@ public class MainController {
             sc.nextLine();*/
 
             System.out.println("So chung minh nhan dan Customer: ");
-            myCustomer.setIdentityCardNumber(sc.nextLine());
-            sc.nextLine();
+            String customerIdCard = sc.nextLine();
+            myCustomer.setIdentityCardNumber(customerIdCard);
 
             System.out.println("So dien thoai Customer: ");
-            myCustomer.setPhoneNumber(sc.nextLine());
-            sc.nextLine();
+            String customerPhone = sc.nextLine();
+            myCustomer.setPhoneNumber(customerPhone);
 
            /* String checkMail;
             do{
@@ -155,28 +148,29 @@ public class MainController {
             myCustomer.setEmailAddress(checkMail);*/
 
             System.out.println("Email:");
-            myCustomer.setEmailAddress(sc.nextLine());
-            sc.nextLine();
+            String cusEmail = sc.nextLine();
+            myCustomer.setEmailAddress(cusEmail);
 
             System.out.println("Loại Customer: ");
-            myCustomer.setTypeOfGuest(sc.nextInt());
-
-            System.out.println("Dia chi: ");
-            myCustomer.setAddress(sc.nextLine());
+            int cusType = sc.nextInt();
+            myCustomer.setTypeOfGuest(cusType);
             sc.nextLine();
 
+            System.out.println("Dia chi: ");
+            String cusAddress = sc.nextLine();
+            myCustomer.setAddress(cusAddress);
+
             System.out.println("Su dung dich vu: ");
-            //myCustomer.setUserServices(new Customer());
+            Services services = new House();
+            myCustomer.setUserServices(services);
 
             System.out.println("Ban da nhap khach hang thu " + (dem + 1) + " thanh cong " + "Nhan enter de tiep tuc!!!");
             sc.nextLine();
             customerList.add(myCustomer);
             dem = dem + 1;
-
         }
         displayMainMenu();
     }
-
     private static void showService() {//task 3
         Scanner sc = new Scanner(System.in);
         
@@ -304,8 +298,7 @@ public class MainController {
         System.out.println("3. Write file data Room");
         System.out.println("4. Write File Customer");
 
-        int luaChon;
-        luaChon =sc.nextInt();
+        int luaChon =sc.nextInt();
 
         switch (luaChon) {
             case 1:
@@ -319,10 +312,12 @@ public class MainController {
                 break;
             case 4:
                 writeFileCustomer();
+                break;
             default:
                 System.out.println("Khong co file nao duoc ghi o day. Vui long nhap lai!!!");
                 break;
         }
+
     }
 
     private static void writeFileCustomer() {
