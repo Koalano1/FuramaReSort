@@ -31,7 +31,7 @@ public class MainController {
 
     private static void displayMainMenu() {
         Scanner sc = new Scanner(System.in);
-        
+
 
         System.out.println("=========MAIN MENU==========");
         System.out.println("1. Add New Service");
@@ -55,13 +55,13 @@ public class MainController {
                 break;
             case 3:
                 addNewCustomer();
-                break; 
+                break;
             case 4:
                 showInformationCustomer();
-                break;   
+                break;
             case 5:
                 //task 7
-                break;  
+                break;
             case 6:
                 //task 9
                 break;
@@ -69,7 +69,7 @@ public class MainController {
                 Exit();
                 break;
             case 8:
-                writeFileData();                     
+                writeFileData();
             default:
                 System.out.println("Ban da nhap sai. Vui long nhap lai!!!");
                 break;
@@ -165,9 +165,52 @@ public class MainController {
             String cusAddress = sc.nextLine();
             myCustomer.setAddress(cusAddress);
 
-            System.out.println("Su dung dich vu: ");
-            Services services = new House();
-            myCustomer.setUserServices(services);
+//            System.out.println("Su dung dich vu: ");
+//            Services services = new House();
+//            myCustomer.setUserServices(services);
+
+            System.out.println("Chọn dịch vụ bạn muốn sử dụng: ");
+            System.out.println("1. Villa");
+            System.out.println("2. House");
+            System.out.println("3. Room");
+
+            int userChoice;
+            userChoice = sc.nextInt();
+            switch (userChoice){
+                case 1:
+                    System.out.println("Danh sach Villa:");
+                    for (int i = 0; i < villaList.size(); i++) {
+                        System.out.println((i + 1) + ". " + villaList.get(i).getServiceName());
+                    }
+                    System.out.println("Chon so Villa ban muon su dung: ");
+                    int choiceVilla = Integer.parseInt(sc.nextLine());
+                    Services userServices1 = villaList.get(choiceVilla - 1);
+                    myCustomer.setUserServices(userServices1);
+                    break;
+                case 2:
+                    System.out.println("Danh sach House: ");
+                    for(int i = 0; i < houseList.size(); i++){
+                        System.out.println((i + 1) + ". " + houseList.get(i).getServiceName());
+                    }
+                    System.out.println("Chon so House ban muon su dung: ");
+                    int choiceHouse = Integer.parseInt(sc.nextLine());
+                    Services userServices2 = houseList.get(choiceHouse - 1);
+                    myCustomer.setUserServices(userServices2);
+                    break;
+                case 3:
+                    System.out.println("Danh sach trong Room");
+                    for(int i = 0; i < roomList.size(); i++){
+                        System.out.println((i + 1)+ ". "+ roomList.get(i).getServiceName());
+                    }
+                    System.out.println("Chon so Room ban muon su dung: ");
+                    int choiceRoom = Integer.parseInt(sc.nextLine());
+                    Services userServices3 = roomList.get(choiceRoom - 1);
+                    myCustomer.setUserServices(userServices3);
+                    break;
+                default:
+                    System.out.println("Da xo loi trong luc nhap. Vui long chon lai !!!");
+                    break;
+            }
 
             System.out.println("Ban da nhap khach hang thu " + (dem + 1) + " thanh cong " + "Nhan enter de tiep tuc!!!");
             sc.nextLine();
@@ -178,7 +221,7 @@ public class MainController {
     }
     private static void showService() {//task 3
         Scanner sc = new Scanner(System.in);
-        
+
 
         System.out.println("1. Show all Villa");
         System.out.println("2. Show all House");
@@ -204,7 +247,7 @@ public class MainController {
             case 3:
                 showAllRoom();
                 break;
-            case 4: 
+            case 4:
                 //task 8
                 break;
             case 5:
@@ -218,7 +261,7 @@ public class MainController {
                 break;
             case 8:
                 Exit();
-                break;        
+                break;
             default:
                 System.out.println("Ban nhap sai roi. Vui long nhap lai!!!");
                 break;
@@ -226,25 +269,25 @@ public class MainController {
 
     }
     private static void showAllRoom() {
-       int i = 1;
-       for(Room room : roomList){
+        int i = 1;
+        for(Room room : roomList){
             System.out.println("Room thu "+ i + " la");
             room.showInfor();
             i++;
-       }
+        }
 
-       displayMainMenu();
+        displayMainMenu();
 
     }
 
     private static void showAllHouse() {
-       int i = 1;
-       for(House house: houseList){
+        int i = 1;
+        for(House house: houseList){
             System.out.println("House thu "+ i + " la");
             house.showInfor();
             i++;
-       }
-       displayMainMenu();
+        }
+        displayMainMenu();
     }
 
     private static void showAllVilla() {
@@ -254,10 +297,10 @@ public class MainController {
             villa.showInfor();
             i++;
         }
-        
+
         displayMainMenu();
     }
-    
+
     private static void showNewMenuService(){
         System.out.println("1.Add New Villa");
         System.out.println("2.Add New House");
@@ -272,7 +315,7 @@ public class MainController {
         Scanner sc = new Scanner(System.in);
 
         int soLuong = sc.nextInt();
-        
+
         switch (soLuong) {
             case 1:
                 addNewVilla();
@@ -280,7 +323,7 @@ public class MainController {
             case 2:
                 addNewHouse();
                 break;
-            case 3: 
+            case 3:
                 addNewRoom();
                 break;
             case 4:
@@ -309,7 +352,7 @@ public class MainController {
             case 1:
                 writeFileDataVilla();
                 break;
-            case 2: 
+            case 2:
                 writeFileDataHouse();
                 break;
             case 3:
@@ -373,14 +416,14 @@ public class MainController {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("Villa.csv"))) {
             bw.write("Thong tin cua Villa la: ");
             bw.newLine();
-            
+
             for(int i = 0; i < villaList.size(); i++){
                 bw.write("Villa " + (i + 1) +":");
                 bw.newLine();
                 // bw.newLine();
                 bw.write("Ten dich vu: "+ villaList.get(i).getServiceName());
                 bw.newLine();
-                
+
                 bw.write("Dien tich su dung: "+ villaList.get(i).getUsableArea());
                 bw.newLine();
 
@@ -389,7 +432,7 @@ public class MainController {
 
                 bw.write("So luong nguoi toi da: "+ villaList.get(i).getNumberMaximumPeople());
                 bw.newLine();
-                
+
                 bw.write("Kieu thue: "+ villaList.get(i).getStyleRent());
                 bw.newLine();
 
@@ -405,7 +448,7 @@ public class MainController {
                 bw.write("Dien tich ho boi: "+ villaList.get(i).getPoolArea());
                 bw.newLine();
             }
-           
+
             bw.newLine();
 
 
@@ -414,7 +457,7 @@ public class MainController {
             displayMainMenu();
         }
 
-        System.out.println(java.time.LocalDateTime.now()); 
+        System.out.println(java.time.LocalDateTime.now());
         // DateTimeFormatter dft = DateTimeFortmatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         // LocalDate now = LocalDate.now();
         // System.out.println(dft.format(now));
@@ -431,7 +474,7 @@ public class MainController {
                 // bw.newLine();
                 bw.write("Ten dich vu: "+ houseList.get(i).getServiceName());
                 bw.newLine();
-                
+
                 bw.write("Dien tich su dung: "+ houseList.get(i).getUsableArea());
                 bw.newLine();
 
@@ -440,7 +483,7 @@ public class MainController {
 
                 bw.write("So luong nguoi toi da: "+ houseList.get(i).getNumberMaximumPeople());
                 bw.newLine();
-                
+
                 bw.write("Kieu thue: "+ houseList.get(i).getStyleRent());
                 bw.newLine();
 
@@ -454,12 +497,12 @@ public class MainController {
                 bw.newLine();
             }
             bw.newLine();
-            
+
         } catch (Exception e) {
-           System.out.println("Da co loi trong ghi file. Moi quay ve menu chinh!!!");
-           displayMainMenu();
+            System.out.println("Da co loi trong ghi file. Moi quay ve menu chinh!!!");
+            displayMainMenu();
         }
-        
+
     }
 
     public static void writeFileDataRoom(){
@@ -472,7 +515,7 @@ public class MainController {
                 // bw.newLine();
                 bw.write("Ten dich vu: "+ roomList.get(i).getServiceName());
                 bw.newLine();
-                
+
                 bw.write("Dien tich su dung: "+ roomList.get(i).getUsableArea());
                 bw.newLine();
 
@@ -481,7 +524,7 @@ public class MainController {
 
                 bw.write("So luong nguoi toi da: "+ roomList.get(i).getNumberMaximumPeople());
                 bw.newLine();
-                
+
                 bw.write("Kieu thue: "+ roomList.get(i).getStyleRent());
                 bw.newLine();
 
@@ -495,14 +538,14 @@ public class MainController {
     }
 
 
-    //case1: 
+    //case1:
     private static void addNewVilla() {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("So luong villa muon them vao la: ");
 
         int soLuong = sc.nextInt();
-    
+
         int dem = 0;
         while(dem < soLuong) {
             Villa myVilla = new Villa();
@@ -517,38 +560,38 @@ public class MainController {
             System.out.print("Nhap tieu chuan phong: ");
             // sc.nextLine();
             myVilla.setRoomStandard(sc.nextInt());
-    
+
             System.out.print("Nhap mo ta tien nghi khac: ");
             myVilla.setDescriptionOfOther(sc.nextInt());
-    
+
             System.out.print("Nhap dien tich ho boi: ");
             myVilla.setDescriptionOfOther(sc.nextInt());
-    
+
             System.out.print("Nhap so tang: ");
             myVilla.setFloor(sc.nextInt());
-    
+
             System.out.print("Nhap ten dich vu: ");
             myVilla.setServiceName(sc.nextLine());
             sc.nextLine();
-    
+
             System.out.print("Nhap dien tich su dung: ");
             myVilla.setUsableArea(sc.nextInt());
-    
+
             System.out.print("Nhap chi phi thue: ");
             myVilla.setFeeRent(sc.nextInt());
-    
+
             System.out.print("Nhap so luong toi da: ");
             myVilla.setNumberMaximumPeople(sc.nextInt());
-    
+
             System.out.print("Nhap kieu thue: ");
             myVilla.setStyleRent(sc.nextDouble());
-    
+
             System.out.println("Ban da nhap Villa thu " + (dem  + 1) + " thanh cong! " + "Enter de tiep tuc");
             sc.nextLine();
             villaList.add(myVilla);
             dem = dem + 1;
         }
-        
+
         displayMainMenu();
     }
 
@@ -599,7 +642,7 @@ public class MainController {
         displayMainMenu();
 
     }
-    //case3: 
+    //case3:
     private static void addNewRoom() {
         Scanner sc = new Scanner(System.in);
 
@@ -643,12 +686,12 @@ public class MainController {
         displayMainMenu();
     }
 
-    //case5: 
+    //case5:
     private static void Exit() {
         System.exit(0);
     }
 
 
 
-    
+
 }

@@ -1,5 +1,6 @@
 package Exception.UserException;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -40,12 +41,14 @@ public class ExceptionCustomer {
         if (!m.matches()) {
             System.out.println("Khong dung roi!!!");
         }
-//        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
         int year = Integer.parseInt(stringBirthdayException.substring(6));
         if (year <= 1900 || year > Calendar.getInstance().get(Calendar.YEAR) - 18) {
             return false;
         }
         return true;
+        //LocalDate myLocalDate = LocalDate.now();
+
     }
 
 }
