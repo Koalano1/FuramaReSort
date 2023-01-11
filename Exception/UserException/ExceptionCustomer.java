@@ -39,7 +39,8 @@ public class ExceptionCustomer {
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(stringBirthdayException);
         if (!m.matches()) {
-            System.out.println("Khong dung roi!!!");
+            System.out.println("Khong dung roi!!! Vui long nhap lai");
+
         }
 
         int year = Integer.parseInt(stringBirthdayException.substring(6));
@@ -47,7 +48,6 @@ public class ExceptionCustomer {
             return false;
         }
         return true;
-        //LocalDate myLocalDate = LocalDate.now();
 
     }
 

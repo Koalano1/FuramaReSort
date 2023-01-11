@@ -174,26 +174,35 @@ public class MainController {
             System.out.println("2. House");
             System.out.println("3. Room");
 
-            int userChoice;
-            userChoice = sc.nextInt();
+            int userChoice = sc.nextInt();
+
             switch (userChoice){
                 case 1:
-                    System.out.println("Danh sach Villa:");
+                    System.out.println("Danh sach Villa");
                     for (int i = 0; i < villaList.size(); i++) {
                         System.out.println((i + 1) + ". " + villaList.get(i).getServiceName());
                     }
                     System.out.println("Chon so Villa ban muon su dung: ");
-                    int choiceVilla = Integer.parseInt(sc.nextLine());
+                    int choiceVilla = sc.nextInt();
+                    if (choiceVilla < 1 || choiceVilla > villaList.size()) {
+                        System.out.println("Lua chon khong hop le. Vui long nhap lai.");
+                        continue;
+                    }
                     Services userServices1 = villaList.get(choiceVilla - 1);
                     myCustomer.setUserServices(userServices1);
                     break;
+
                 case 2:
                     System.out.println("Danh sach House: ");
                     for(int i = 0; i < houseList.size(); i++){
                         System.out.println((i + 1) + ". " + houseList.get(i).getServiceName());
                     }
                     System.out.println("Chon so House ban muon su dung: ");
-                    int choiceHouse = Integer.parseInt(sc.nextLine());
+                    int choiceHouse = sc.nextInt();
+                    if(choiceHouse < 1 || choiceHouse > houseList.size()){
+                        System.out.println("Lua chon khong hop le. Vui long nhap lai.");
+                        continue;
+                    }
                     Services userServices2 = houseList.get(choiceHouse - 1);
                     myCustomer.setUserServices(userServices2);
                     break;
@@ -203,7 +212,11 @@ public class MainController {
                         System.out.println((i + 1)+ ". "+ roomList.get(i).getServiceName());
                     }
                     System.out.println("Chon so Room ban muon su dung: ");
-                    int choiceRoom = Integer.parseInt(sc.nextLine());
+                    int choiceRoom = sc.nextInt();
+                    if(choiceRoom < 1 || choiceRoom > roomList.size()){
+                        System.out.println("Lua chon khong hop le. Vui long nhap lai.");
+                        continue;
+                    }
                     Services userServices3 = roomList.get(choiceRoom - 1);
                     myCustomer.setUserServices(userServices3);
                     break;
