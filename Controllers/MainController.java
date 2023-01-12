@@ -165,10 +165,6 @@ public class MainController {
             String cusAddress = sc.nextLine();
             myCustomer.setAddress(cusAddress);
 
-//            System.out.println("Su dung dich vu: ");
-//            Services services = new House();
-//            myCustomer.setUserServices(services);
-
             System.out.println("Chọn dịch vụ bạn muốn sử dụng: ");
             System.out.println("1. Villa");
             System.out.println("2. House");
@@ -180,7 +176,7 @@ public class MainController {
                 case 1:
                     System.out.println("Danh sach Villa");
                     for (int i = 0; i < villaList.size(); i++) {
-                        System.out.println((i + 1) + ". " + villaList.get(i).getServiceName());
+                        System.out.println((i + 1)+ ". " + villaList.get(i).toString());
                     }
                     System.out.println("Chon so Villa ban muon su dung: ");
                     int choiceVilla = sc.nextInt();
@@ -195,7 +191,7 @@ public class MainController {
                 case 2:
                     System.out.println("Danh sach House: ");
                     for(int i = 0; i < houseList.size(); i++){
-                        System.out.println((i + 1) + ". " + houseList.get(i).getServiceName());
+                        System.out.println((i + 1) + ". " + houseList.get(i).toString());
                     }
                     System.out.println("Chon so House ban muon su dung: ");
                     int choiceHouse = sc.nextInt();
@@ -209,7 +205,7 @@ public class MainController {
                 case 3:
                     System.out.println("Danh sach trong Room");
                     for(int i = 0; i < roomList.size(); i++){
-                        System.out.println((i + 1)+ ". "+ roomList.get(i).getServiceName());
+                        System.out.println((i + 1)+ ". "+ roomList.get(i).toString());
                     }
                     System.out.println("Chon so Room ban muon su dung: ");
                     int choiceRoom = sc.nextInt();
@@ -221,7 +217,7 @@ public class MainController {
                     myCustomer.setUserServices(userServices3);
                     break;
                 default:
-                    System.out.println("Da xo loi trong luc nhap. Vui long chon lai !!!");
+                    System.out.println("Da co loi trong luc nhap. Vui long chon lai !!!");
                     break;
             }
 
@@ -247,8 +243,7 @@ public class MainController {
         System.out.println("Ban muon chon cai nao?");
 
 
-        int luaChon;
-        luaChon = sc.nextInt();
+        int luaChon = sc.nextInt();
 
         switch (luaChon) {
             case 1:
