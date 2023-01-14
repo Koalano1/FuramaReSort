@@ -1,14 +1,13 @@
 package Controllers;
 import java.io.*;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 import Exception.UserException.ExceptionCustomer;
 import Models.Services.Customer.Customer;
+
+import Models.Services.Customer.CustomerComparator;
 import Models.Services.House;
 import Models.Services.Room;
 import Models.Services.Services;
@@ -76,7 +75,12 @@ public class MainController {
         }
     }
 
-    private static void showInformationCustomer()  {//task 5 ý 3
+    private static void showInformationCustomer() {//task 5 ý 3
+        List<Customer> customers = new ArrayList<>();
+        Collections.sort(customers, new CustomerComparator());
+        for(Customer customer : customers){
+            System.out.println(customer.getName() + customer.getDateOfBirth());
+        }
 
         try {
             FileReader fr = new FileReader("D:\\Java_learning\\JavaProject02\\FuramaReSort\\Customer.CSV");
@@ -90,13 +94,12 @@ public class MainController {
             fr.close();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Da co loi trong doc ghi file. Vui long quay lai menu");
             displayMainMenu();
         }
-
-
     }
+
 
     private static void addNewCustomer() {//task 5 ý 2
         Scanner sc = new Scanner(System.in);
