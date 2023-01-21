@@ -1,13 +1,13 @@
 package Controllers;
 import java.io.*;
 import java.util.*;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import Exception.UserException.ExceptionCustomer;
 import Models.Services.Customer.Customer;
 
 import Models.Services.Customer.CustomerComparator;
+import Models.Services.Employee.Employee;
 import Models.Services.House;
 import Models.Services.Room;
 import Models.Services.Services;
@@ -22,6 +22,7 @@ public class MainController {
     private static ArrayList<Room> roomList = new ArrayList<>();
     private static ArrayList<Services> servicesList = new ArrayList<>();
     private static ArrayList<Customer> customerList = new ArrayList<>();
+    private static ArrayList<Employee> employeeList = new ArrayList<>();
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -59,10 +60,10 @@ public class MainController {
                 showInformationCustomer();
                 break;
             case 5:
-                //task 7
+                addNewBook();
                 break;
             case 6:
-                //task 9
+                showInforOfEmployee();
                 break;
             case 7:
                 Exit();
@@ -74,6 +75,103 @@ public class MainController {
                 break;
         }
     }
+
+    private static Map<String, Employee> showInforOfEmployee() {
+        List<Employee> employees =  new ArrayList<>();
+        try {
+            FileReader fr = new FileReader("D:\\Java_learning\\JavaProject02\\FuramaReSort\\Employee.CSV");
+            BufferedReader br = new BufferedReader(fr);
+            int i;
+            while ((i = br.read()) != -1) {
+               System.out.print((char) i);
+
+                Employee employee = new Employee();
+                Map<String, Employee> employeeMap = new HashMap<>();
+                for(Employee employe: employees){
+                    employeeMap.put(employe.getIdentityCardNumber(), employee);
+                }
+
+                for(Map.Entry<String, Employee> entry : employeeMap.entrySet()){
+                    System.out.println("ID: "+ entry.getKey()+ entry.getValue());
+                }
+                return employeeMap;
+            }
+            br.close();
+            fr.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            System.out.println("Da co loi trong doc ghi file. Vui long quay lai menu");
+            displayMainMenu();
+        }
+
+        return null;
+    }
+
+    private static void addNewBook() {
+        Scanner sc = new Scanner(System.in);
+        try {
+            FileReader fr = new FileReader("D:\\Java_learning\\JavaProject02\\FuramaReSort\\Customer.CSV");
+            BufferedReader br = new BufferedReader(fr);
+            int i;
+            while ((i = br.read()) != -1) {
+                System.out.print((char) i);
+            }
+            br.close();
+            fr.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            System.out.println("Da co loi trong doc ghi file. Vui long quay lai menu");
+            displayMainMenu();
+        }
+        System.out.println("Select booking service");
+        System.out.println("1. Booking Villa");
+        System.out.println("2. Booking House");
+        System.out.println("3. Booking Room");
+
+        int luaChon = sc.nextInt();
+        switch (luaChon){
+            case 1:
+                BookingVilla();
+                break;
+            case 2:
+                BookingHouse();
+                break;
+            case 3:
+                BookingRoom();
+                break;
+            default:
+                System.out.println("Da co loi. Vui long nhap lai");
+                break;
+        }
+    }
+
+    private static void BookingRoom() {
+        try {
+            FileReader fr = new FileReader("D:\\Java_learning\\JavaProject02\\FuramaReSort\\Customer.CSV");
+            BufferedReader br = new BufferedReader(fr);
+            int i;
+            while ((i = br.read()) != -1) {
+                System.out.print((char) i);
+            }
+            br.close();
+            fr.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            System.out.println("Da co loi trong doc ghi file. Vui long quay lai menu");
+            displayMainMenu();
+        }
+    }
+
+    private static void BookingHouse() {
+    }
+
+    private static void BookingVilla() {
+        
+    }
+
 
     private static void showInformationCustomer() {//task 5 ý 3
         List<Customer> customers = new ArrayList<>();
@@ -89,7 +187,6 @@ public class MainController {
             while ((i = br.read()) != -1) {
                 System.out.print((char) i);
             }
-
             br.close();
             fr.close();
         } catch (FileNotFoundException e) {
@@ -259,13 +356,13 @@ public class MainController {
                 showAllRoom();
                 break;
             case 4:
-                //task 8
+                showAllNameVillaNotDuplicate();
                 break;
             case 5:
-                //task 8
+                showAllNameHouseDuplicate();
                 break;
             case 6:
-                //task 8
+                showAllNameRoomDupliccate();
                 break;
             case 7:
                 backToMenu();
@@ -278,6 +375,48 @@ public class MainController {
                 break;
         }
 
+    }
+
+    private static void showAllNameRoomDupliccate() {
+        TreeSet<String> roomNames = new TreeSet<>();
+        for(String roomName: roomNames){
+            System.out.println("Unique Room Name: "+ roomName);
+        }
+    }
+
+    private static void showAllNameHouseDuplicate() {
+        TreeSet<String> houseNames = new TreeSet<>();
+        for(String houseName: houseNames){
+            System.out.println("Unique House Name: "+ houseName);
+        }
+    }
+
+    public static void showAllNameVillaNotDuplicate(){
+      /*  try {
+            FileReader fr = new FileReader("D:\\Java_learning\\JavaProject02\\FuramaReSort\\Villa.csv");
+            BufferedReader br = new BufferedReader(fr);
+
+            TreeSet<String> villaNames = new TreeSet<>();
+            int i;
+            while ((i = br.read()) != -1) {
+                System.out.print((char) i);
+            }
+            for(String VillaName: villaNames){
+                System.out.println(VillaName);
+            }
+            br.close();
+            fr.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            System.out.println("Da co loi trong doc ghi file. Vui long quay lai menu");
+            displayMainMenu();
+        }*/
+
+        TreeSet<String> villaNames = new TreeSet<>();
+        for(String villaName: villaNames){
+            System.out.println("Ten khong trung nhau: "+ villaName);
+        }
     }
     private static void showAllRoom() {
         int i = 1;
@@ -356,6 +495,7 @@ public class MainController {
         System.out.println("2. Write file data House");
         System.out.println("3. Write file data Room");
         System.out.println("4. Write File Customer");
+        System.out.println("5. Write File Employee");
 
         int luaChon =sc.nextInt();
 
@@ -372,11 +512,55 @@ public class MainController {
             case 4:
                 writeFileCustomer();
                 break;
+            case 5:
+                writeFileEmployee();
+                break;
             default:
                 System.out.println("Khong co file nao duoc ghi o day. Vui long nhap lai!!!");
                 break;
         }
 
+    }
+
+    private static void writeFileEmployee() {
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter("Employee.CSV"))){
+            bw.write("Thong tin cua Employee: ");
+            bw.newLine();
+
+            for(int i = 0; i < employeeList.size(); i++){
+                bw.write("Customer "+ (i + 1)+":");
+                bw.newLine();
+
+                bw.write("Ten cua Nhan vien "+ employeeList.get(i).getName());
+                bw.newLine();
+
+                bw.write("Ngay thang nam sinh Nhan vien: "+ employeeList.get(i).getDateOfBirth());
+                bw.newLine();
+
+                bw.write("So chung minh nhan dan cua Employee: "+ employeeList.get(i).getIdentityCardNumber());
+                bw.newLine();
+
+                bw.write("So dien thoai cua Employee: "+ employeeList.get(i).getPhoneNumber());
+                bw.newLine();
+
+                bw.write("Dia chi email cua Employee: "+ employeeList.get(i).getEmailAddress());
+                bw.newLine();
+
+                bw.write("Tieu chuan kep cua Employee: "+ employeeList.get(i).getStandard());
+                bw.newLine();
+
+                bw.write("Vi tri: " + employeeList.get(i).getLocation());
+                bw.newLine();
+
+                bw.write("Muc luong: " + employeeList.get(i).getSalary());
+                bw.newLine();
+
+            }
+            bw.newLine();
+        } catch (IOException e) {
+            System.out.println("Da co loi trong ghi file. Moi quay ve menu chinh!");
+            displayMainMenu();
+        }
     }
 
     private static void writeFileCustomer() {
