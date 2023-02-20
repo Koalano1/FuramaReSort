@@ -91,6 +91,7 @@ public class MainController {
                     employeeMap.put(employe.getIdentityCardNumber(), employee);
                 }
 
+
                 for(Map.Entry<String, Employee> entry : employeeMap.entrySet()){
                     System.out.println("ID: "+ entry.getKey()+ entry.getValue());
                 }
@@ -166,10 +167,11 @@ public class MainController {
     }
 
     private static void BookingHouse() {
+        //tương tự
     }
 
     private static void BookingVilla() {
-        
+        //Tương tự
     }
 
 

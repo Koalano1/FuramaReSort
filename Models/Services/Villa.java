@@ -126,10 +126,5 @@ public class Villa extends Services {
     }
 
 
-  
-    // public static void add(Villa myVilla) {
-
-    // }
-
 
 }
